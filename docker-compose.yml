@@ -1,0 +1,39 @@
+version: '3'
+services:
+    ssh-server:
+            image:  sumit/centos-ssh:v1
+            ports: 
+                    - "2001:22" 
+            volumes: 
+                    - /var/lib/docker/volumes/sumit/_data
+            restart: always
+
+
+    container1:
+            image: centos:7
+            networks:
+                    - pune
+            volumes: 
+                    - sumit:/home/
+
+            restart: always 
+
+    container2:
+            image: centos:7
+            networks:
+                    - pune
+            volumes: 
+                    - sumit:/home/
+            restart: always
+    container3:
+            image: centos:7
+            networks:
+                     - pune
+            volumes:
+                     - sumit:/home/
+            restart: always
+volumes:
+      sumit:
+networks:
+      pune:
+          driver: bridge
